@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijeras</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: url(https://img.freepik.com/vector-premium/manos-dibujos-animados-vector-haciendo-papel-tijeras-roca-aislado-sobre-fondo-blanco-proceso-juego-mano-piedra-papel-tijeras-conjunto-gestos-manos_221648-185.jpg?w=2000) center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #game-container {
+            background: rgba(52, 73, 94, 0.8); /* Cambiado a un tono de azul oscuro */
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        h1 {
+            color: #3498db;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        button {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        p {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Piedra, Papel o Tijeras</h1>
+        <button onclick="playGame('piedra')">Piedra</button>
+        <button onclick="playGame('papel')">Papel</button>
+        <button onclick="playGame('tijeras')">Tijeras</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function playGame(playerChoice) {
+            const choices = ['piedra', 'papel', 'tijeras'];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+            const resultMessage = document.getElementById('result');
+
+            resultMessage.textContent = `Tu elección: ${playerChoice}. Elección de la computadora: ${computerChoice}.`;
+
+            if (playerChoice === computerChoice) {
+                resultMessage.textContent += ' ¡Es un empate!';
+            } else if (
+                (playerChoice === 'piedra' && computerChoice === 'tijeras') ||
+                (playerChoice === 'papel' && computerChoice === 'piedra') ||
+                (playerChoice === 'tijeras' && computerChoice === 'papel')
+            ) {
+                resultMessage.textContent += ' ¡Ganaste!';
+            } else {
+                resultMessage.textContent += ' ¡Perdiste!';
+            }
+        }
+    </script>
+</body>
+</html>
